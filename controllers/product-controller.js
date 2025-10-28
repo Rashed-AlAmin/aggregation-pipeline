@@ -1,6 +1,34 @@
 const Product=require('../models/product')
 
+const getProductStats=async(req,res)=>{
+    try{
+        const result= await Product.aggregate([
+            //stage 1
+            {
+                $match:{
+                    inStock:true,
+                    price:{
+                        $gte:100
+                    }
+                }
+            },
+            //stage 2
+            {
 
+            }
+        ])
+    res.status(200).json({
+        success:true,
+        data:result
+    })
+    }catch(e){
+         console.log(e);
+        res.status(500).json({
+            success:false,
+            message:'some error occured'
+        })
+    }
+}
 
 
 const insertSampleProduct=async (req,res)=>{
@@ -57,4 +85,4 @@ const insertSampleProduct=async (req,res)=>{
 }
 
 
-module.exports=insertSampleProduct
+module.exports={insertSampleProduct, getProductStats}

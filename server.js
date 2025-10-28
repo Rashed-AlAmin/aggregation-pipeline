@@ -12,6 +12,7 @@ app.use(express.json())
 
 app.use('/products',productRoutes)
 
+
 app.listen(process.env.PORT,()=>{
     console.log(`listening to ${PORT} port`)
 })
