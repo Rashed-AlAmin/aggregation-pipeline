@@ -14,7 +14,15 @@ const getProductStats=async(req,res)=>{
             },
             //stage 2
             {
-
+                $group:{
+                    _id:"$category",
+                    avgPrice:{
+                        $avg:"$price" 
+                    },
+                    count:{
+                        $sum:1
+                    }
+                }
             }
         ])
     res.status(200).json({
@@ -30,6 +38,17 @@ const getProductStats=async(req,res)=>{
     }
 }
 
+const getProductAnalysis=async(req,res)=>{
+    try{
+
+    }catch(e){
+        console.log(e);
+        res.status(500).json({
+            success:false,
+            message:'some error occured'
+        })
+    }
+}
 
 const insertSampleProduct=async (req,res)=>{
     try{
