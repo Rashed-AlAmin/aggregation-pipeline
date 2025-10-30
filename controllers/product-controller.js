@@ -8,7 +8,7 @@ const getProductStats=async(req,res)=>{
                 $match:{
                     inStock:true,
                     price:{
-                        $gte:100
+                        $gte:10
                     }
                 }
             },
